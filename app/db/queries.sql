@@ -38,7 +38,7 @@ JOIN ORDER_DETAILS od ON p.product_id = od.product_id
 JOIN ORDERS o ON od.order_id = o.order_id
 WHERE o.order_status != 'Cancelled'
 GROUP BY p.product_id, p.product_name
--- SỬA Ở ĐÂY: Sắp xếp giảm dần theo Số lượng thay vì Doanh thu
+
 ORDER BY Total_Quantity_Sold DESC;
 
 -- ========================================================
@@ -87,9 +87,6 @@ DELIMITER ;
 -- ========================================================
 
 DELIMITER //
-
--- 1. Xóa trigger cũ để tránh lỗi "Already exists"
-DROP TRIGGER IF EXISTS trg_decrease_stock_after_order //
 
 -- 2. Tạo lại Trigger
 CREATE TRIGGER trg_decrease_stock_after_order
